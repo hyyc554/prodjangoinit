@@ -2,6 +2,9 @@ FROM python:3.7-alpine
 
 ENV PYTHONUNBUFFERED 1
 
+# 针对中国境内，更新安装源，使用科大源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+
 RUN apk update \
   # psycopg2 dependencies
   && apk add --virtual build-deps gcc python3-dev musl-dev \
